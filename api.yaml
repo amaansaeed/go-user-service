@@ -1,0 +1,68 @@
+swagger: "2.0"
+info:
+  title: Users Service API
+  description: A users microservice api written in go
+  version: 1.0.0
+host: api.example.com
+basePath: /api/v1
+schemes:
+  - https
+paths:
+  /login:
+    post:
+      summary: Authenticates a user.
+      description: Authenticates a user and returns an access token.
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          description: The user to authenticate.
+          schema:
+            type: object
+            required:
+              - userName
+            properties:
+              identifier:
+                type: string
+              password:
+                type: string
+      responses:
+        200:
+          description: OK
+          headers:
+            Access-Token:
+              type: string
+              description: JWT access token
+  /create:
+    post:
+      summary: Creates a new user.
+      description: Creates a new user.
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          description: The user to authenticate.
+          schema:
+            type: object
+            required:
+              - userName
+            properties:
+              username:
+                type: string
+              email:
+                type: string
+              password:
+                type: string
+      responses:
+        200:
+          description: OK
+          headers:
+            Access-Token:
+              type: string
+              description: JWT access token
